@@ -1,22 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html lang="vi">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Quản lý phòng vé</title>
-
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<script src="js/jquery-1.12.3.js"></script>
-  		<script src="js/bootstrap.min.js"></script>
-	</head>
-	<body>
-
-	<div class="container">
-
+<%@ include file="/WEB-INF/header.jsp"%>
 	<!-- header -->
 	 	<div class="row" style="text-align: center; background-color: #F0F0F0; height: 100px">
 			<label style="font-size: 30px; padding:30px;">HỆ THỐNG QUẢN LÝ PHÒNG BÁN VÉ MÁY BAY</label>
@@ -39,7 +24,5 @@
 				<input type="hidden" name="loginPressed" value="yes">
 			</div>
 		</form>
-	</div>
-</body>
-</html>
 
+<%@ include file="/WEB-INF/footer.jsp"%>

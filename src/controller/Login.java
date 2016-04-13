@@ -73,15 +73,20 @@ public class Login extends HttpServlet {
 					// login successful
 					user = loginBO.getCurrentUser();
 					// save session
-					session.setAttribute("userId", user.getId());
+					session.setAttribute("currentUser", user);
 					
-					request.setAttribute("currentUser", user);
+					//request.setAttribute("currentUser", user);
 					request.getRequestDispatcher("/home").include(request,
 					 response);
 				}
 				break;
 			case "":
-				request.getRequestDispatcher("WEB-INF/dang_nhap.jsp").include(request, response);
+				if (((User)session.getAttribute("currentUser")) != null) {
+					response.sendRedirect("home");
+				}
+				else {
+					request.getRequestDispatcher("WEB-INF/dang_nhap.jsp").include(request, response);
+				}
 				break;
 			}
 

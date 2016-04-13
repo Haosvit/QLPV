@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.User;
 
@@ -31,14 +32,13 @@ public class HomePage extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");	
 		
+		HttpSession session = request.getSession(true);
 		
 		// get user privilege
-		user = (User) request.getAttribute("currentUser");
+		user = (User) session.getAttribute("currentUser");
 		if (user != null) {
-			request.setAttribute("userPrivilege", user.getPrivilege());
-			request.setAttribute("userName", user.getFullName());
-			request.getRequestDispatcher("/WEB-INF/trang_chu.jsp").include(request, response);
-			
+			request.setAttribute("currentUser", user);
+			request.getRequestDispatcher("/WEB-INF/trang_chu.jsp").include(request, response);		
 		}
 		
 		// redirect to home page with right privilege
