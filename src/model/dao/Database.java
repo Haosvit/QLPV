@@ -24,7 +24,7 @@ public class Database {
 			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			// Đường dẫn ở thư mục mã nguồn, để test CSDL
 			String address = UcanaccessDriver.URL_PREFIX
-					+ "";
+					+ "E:/Projects/Java/Eclipse workspaces/DynamicWeb/QLPV/WebContent/WEB-INF/QLPV.accdb";
 
 			/**
 			 * Đường dẫn tự động ở thư mục đã triển khai (trong thư mục DAO)
