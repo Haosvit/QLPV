@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -63,19 +64,23 @@ public class UserDAO extends Database {
 		return user;
 	}
 	
-	public ArrayList<User> getListUsers() {
-		String queryStr = "select * from USERS;";
+	public ArrayList<User> getUsers() {
+		String queryStr = "select * from NHANVIEN;";
 		ArrayList<User> users = new ArrayList<User>();
 		
 		try {
 			ResultSet rs = execute(queryStr);
 			while (rs.next()) {
 				String id = rs.getString("MaNhanVien");
-				String email = rs.getString("TaiKhoan");
-				String fullName = rs.getString("TenNhanVien");
+				String fullName = rs.getString("TenNhanVien");				
+				Date dob = rs.getDate("NgaySinh");
 				boolean isMale = rs.getBoolean("GioiTinh");
-				//TODO add more properties
-				User user = new User(id, fullName, null, isMale, email, null, null, null);
+				String email = rs.getString("TaiKhoan");
+				String pwd = rs.getString("MatKhau");
+				String phoneNumber = rs.getString("SDT");
+				String privilege = rs.getString("Quyen");
+				
+				User user = new User(id, fullName, dob, isMale, email, pwd, phoneNumber, privilege);
 				users.add(user);
 			}
 		}

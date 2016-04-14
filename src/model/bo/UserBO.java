@@ -1,5 +1,7 @@
 package model.bo;
 
+import java.util.ArrayList;
+
 import model.bean.User;
 import model.dao.UserDAO;
 
@@ -25,5 +27,8 @@ public class UserBO {
 		return userDAO.getUser(userId);
 	}
 	
+	public ArrayList<User> getUsers() {
+		return userDAO.getUsers();
+	}
 	
 }

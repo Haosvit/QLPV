@@ -18,8 +18,12 @@
     <servlet-class>controller.Login</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>Reporter</servlet-name>
-  	<servlet-class>controller.Reporter</servlet-class>
+    <servlet-name>Reporter</servlet-name>
+    <servlet-class>controller.Reporter</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>UserManager</servlet-name>
+  	<servlet-class>controller.UserManager</servlet-class>
   </servlet>
   
   
@@ -34,5 +38,9 @@
   <servlet-mapping>
     <servlet-name>Reporter</servlet-name>
     <url-pattern>/reporter</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UserManager</servlet-name>
+    <url-pattern>/usermanager</url-pattern>
   </servlet-mapping>
 </web-app>
