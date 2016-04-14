@@ -24,7 +24,7 @@
 
 		<!-- header -->
 		<div class="row"
-			style="text-align: center; background-color: #F0F0F0; height: 100px">
+			style="text-align: center; background-color: #bdc3c7; height: 100px">
 			<label style="font-size: 30px; padding: 30px;">HỆ THỐNG QUẢN
 				LÝ PHÒNG BÁN VÉ MÁY BAY</label>
 		</div>
@@ -82,11 +82,6 @@
 				style="border: none; width: 100%; height: 350px"> </iframe>
 		</div>
 		<!-- / main content -->
-		<div>
-
 			<!-- footer -->
-			<hr>
-			<p>SE29 - QUẢN LÝ PHÒNG BÁN VÉ MÁY BAY</p>
-		</div>
-</body>
-</html>
+			
+<%@ include file="/WEB-INF/footer.jsp"%>
