@@ -59,7 +59,7 @@
 									<% if(!isStaff) { %>
 								<li><a href="usermanager" target="_main">Quản lý nhân viên</a></li>
 								<% } %>
-								<li><a href="#">Quản lý khách hàng</a></li>
+								<li><a href="customermanager" target="_main">Quản lý khách hàng</a></li>
 							</ul>
 						</div>
 					</div>

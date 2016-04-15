@@ -31,4 +31,8 @@ public class UserBO {
 		return userDAO.getUsers();
 	}
 	
+	public boolean deleteUser(int userId) {
+		return userDAO.deleteUser(userId);
+	}
+	
 }

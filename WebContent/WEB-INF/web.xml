@@ -22,8 +22,12 @@
     <servlet-class>controller.Reporter</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>UserManager</servlet-name>
-  	<servlet-class>controller.UserManager</servlet-class>
+    <servlet-name>UserManager</servlet-name>
+    <servlet-class>controller.UserManager</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>CustomerManager</servlet-name>
+  	<servlet-class>controller.CustomerManager</servlet-class>
   </servlet>
   
   
@@ -42,5 +46,9 @@
   <servlet-mapping>
     <servlet-name>UserManager</servlet-name>
     <url-pattern>/usermanager</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CustomerManager</servlet-name>
+    <url-pattern>/customermanager</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -15,9 +15,6 @@ public class UserDAO extends Database {
 				+ "values ('" + user.getId() + "', " + user.getFullName() + "', " + user.getDob()
 				+ "', " + user.isMale() + "', " + user.getEmail() + "', " + user.getPwd()
 				+ "', " + user.getPhoneNumber() + "', " + user.getPrivilege() + "');";
-	//	String queryStr = "insert into USERS (Email, Password, FullName, Sex) values ('"
-	//			+ user.getEmail() + "', '" + user.getPwd() + "', '" + user.getFullName() + "', "
-	//			+ (user.isMale() ? "true" : "false") + ")";				
 		try {
 			update(queryStr);
 		}
@@ -28,6 +25,18 @@ public class UserDAO extends Database {
 		return true;
 	}
 
+	public boolean deleteUser(int userId) {
+		String queryStr = "delete from NHANVIEN where MaNhanVien = '" + userId + "';";
+		
+		try {
+			update(queryStr);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public boolean updateUser(User user) {
 		String queryStr = "update NHANVIEN set "
 				+ "TenNhanVien = '" + user.getFullName() + ", NgaySinh = '#" + user.getDob().toString() + "'# "
@@ -52,10 +61,15 @@ public class UserDAO extends Database {
 			if (rs.next()) {
 				String id = rs.getString("MaNhanVien");
 				String fullName = rs.getString("TenNhanVien");
-				String email = rs.getString("TaiKhoan");
+				Date dob = rs.getDate("NgaySinh");
 				Boolean isMale = rs.getBoolean("GioiTinh");
+				String email = rs.getString("TaiKhoan");
+				String pwd = rs.getString("MatKhau");
+				String phoneNumber = rs.getString("SDT");
+				String privilege = rs.getString("Quyen");
+				
 				// TODO add more properties
-				user = new User(id, fullName, null, isMale, email, null, null, null);
+				user = new User(id, fullName, dob, isMale, email, pwd, phoneNumber, privilege);
 			}
 		}
 		catch (SQLException e) {
