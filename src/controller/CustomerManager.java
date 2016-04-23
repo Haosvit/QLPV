@@ -7,8 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.bean.Customer;
+import model.bean.User;
 import model.bo.CustomerBO;
 
 /**
@@ -33,13 +35,16 @@ public class CustomerManager extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html");
 		
+		HttpSession session = request.getSession();
+		
 		customerBO = new CustomerBO();
 		customers = customerBO.getCustomerList();
 		
 		request.setAttribute("customerList", customers);
 		
-		request.getRequestDispatcher("/WEB-INF/quan_ly_khach_hang.jsp").include(request, response);
+		User currentUser = (User) session.getAttribute("currentUser");
 		
+		request.getRequestDispatcher("/WEB-INF/quan_ly_khach_hang_admin.jsp").include(request, response);
 	}
 
 	/**

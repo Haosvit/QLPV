@@ -3,7 +3,7 @@
 <%@ page import="model.bean.User" %>
 <%
 	User user = (User) request.getAttribute("currentUser");
-	boolean isStaff = (user.getPrivilege().equalsIgnoreCase("nv")) ? true : false;
+	boolean isStaff = ("nv".equalsIgnoreCase(user.getPrivilege())) ? true : false;
 %>
 
 <!DOCTYPE html>
@@ -39,7 +39,7 @@
 									class="glyphicon glyphicon-plane"></span></a>
 							</div>
 							<ul class="nav navbar-nav">
-								<li class="active"><a href="#">Trang chủ</a></li>
+								<li class="active"><a href="trang_chu_splash.jsp" target="_main">Trang chủ</a></li>
 								<li class="dropdown"><a class="dropdown-toggle"
 									data-toggle="dropdown" href="#">Quản lý kinh doanh<span
 										class="caret"></span></a>
