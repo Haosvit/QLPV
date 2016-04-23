@@ -19,9 +19,11 @@ boolean isStaff = ("nv".equalsIgnoreCase(currentUser.getPrivilege())) ? true : f
 
 <div class="row">
 			<div class="col-sm-2">
+				<% if (isStaff) {%>
 				<a href="customermanager?action=redir_add_customer" target="_main">
 					<button type="button" class="btn btn-success" name="themNhanVien">Thêm khách hàng</button>
 				</a>
+				<% } %>
 			</div>
 	<form method="POST" name="searchForm" action="customermanager?action=search">
 		<div class="col-sm-2" style="text-align: right">
@@ -119,6 +121,7 @@ boolean isStaff = ("nv".equalsIgnoreCase(currentUser.getPrivilege())) ? true : f
 			}
 			%>
 </table>
+</div>
 </div>
 </body>
 </html>

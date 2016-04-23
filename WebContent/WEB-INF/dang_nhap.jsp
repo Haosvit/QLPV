@@ -14,12 +14,13 @@
 		<legend>Đăng nhập</legend>
 
 		<div class="form-group">
-			<label for="email">Email</label> <input type="text"
-				class="form-control" id="email" placeholder="User ID" name="email">
+			<label for="email">Email</label>
+			 <input type="text"
+				class="form-control" id="email" placeholder="User ID" name="email" maxlength="40">
 		</div>
 		<div class="form-group">
 			<label for="password">Mật khẩu</label> <input type="password"
-				class="form-control" id="password" placeholder="" name="password">
+				class="form-control" id="password" placeholder="" name="password" maxlength="20">
 		</div>
 		<div align="right">
 			<button type="submit" class="btn btn-success">Đăng nhập</button>
