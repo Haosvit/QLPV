@@ -2,6 +2,7 @@ package model.bo;
 
 import java.util.ArrayList;
 
+import model.bean.Customer;
 import model.bean.User;
 import model.dao.UserDAO;
 
@@ -34,5 +35,26 @@ public class UserBO {
 	public boolean deleteUser(int userId) {
 		return userDAO.deleteUser(userId);
 	}
+
+	public ArrayList<User> searchById(String searchContent) {
+		return userDAO.searchBy("MaNhanVien", searchContent);
+	}
+
+	public ArrayList<User> searchByPhoneNumber(String searchContent) {
+		return userDAO.searchBy("SDT", searchContent);
+	}
+	public ArrayList<User> searchByName(String searchContent) {
+		return userDAO.searchBy("TenKhachHang", searchContent);
+	}
+	public ArrayList<User> searchByEmail(String searchContent) {
+		return userDAO.searchBy("Email", searchContent);
+	}
+
+	public void deleteUser(String parameter) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 }

@@ -65,7 +65,6 @@ public class CustomerManager extends HttpServlet {
 			if ("update".equals(action)) {
 				Customer ucus = getRequestCustomer(request);
 				customerBO.updateCustomer(ucus);
-				System.out.println(ucus.getId());
 			}
 			else {
 				// delete				
@@ -121,7 +120,6 @@ public class CustomerManager extends HttpServlet {
 		Date dob = new Date(2016, 23, 4);
 		try {
 			dob = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("dob"));
-			System.out.println("Formated date: " + dob.toString());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

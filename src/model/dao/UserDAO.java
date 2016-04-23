@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.bean.Customer;
 import model.bean.User;
 
 public class UserDAO extends Database {
@@ -103,6 +104,31 @@ public class UserDAO extends Database {
 		}		
 		return users;
 		
+	}
+
+	public ArrayList<User> searchBy(String type, String searchContent) {
+		String queryStr = "select * from NHANVIEN where " + type + "= '"  + searchContent + "';";
+		ArrayList<User> users = new ArrayList<User>();
+		try {
+			ResultSet rs = execute(queryStr);
+			while (rs.next()) {
+				String id = rs.getString("MaNhanVien");
+				String fullName = rs.getString("TenNhanVien");				
+				Date dob = rs.getDate("NgaySinh");
+				boolean isMale = rs.getBoolean("GioiTinh");
+				String email = rs.getString("TaiKhoan");
+				String pwd = rs.getString("MatKhau");
+				String phoneNumber = rs.getString("SDT");
+				String privilege = rs.getString("Quyen");
+				
+				User user = new User(id, fullName, dob, isMale, email, pwd, phoneNumber, privilege);
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return users;
 	}
 
 }

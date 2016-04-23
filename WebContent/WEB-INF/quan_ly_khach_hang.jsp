@@ -12,7 +12,9 @@
 <% ArrayList<Customer> customers = (ArrayList<Customer>) request.getAttribute("customerList"); %>
 <% 
 	User currentUser = (User)session.getAttribute("currentUser");
-boolean isStaff = ("nv".equalsIgnoreCase(currentUser.getPrivilege())) ? true : false; %>
+	boolean isStaff = ("nv".equalsIgnoreCase(currentUser.getPrivilege())) ? true : false; 
+	%>
+	
 <div style="text-align: center">
 	<label style="font-size: 20px; margin: 15px">QUẢN LÝ KHÁCH HÀNG</label>
 </div>
