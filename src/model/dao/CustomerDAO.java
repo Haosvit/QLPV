@@ -1,8 +1,10 @@
 package model.dao;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import model.bean.Customer;
@@ -14,11 +16,15 @@ public class CustomerDAO extends Database{
 	}
 	
 public boolean addCustomer(Customer cus) {
-		
-		String queryStr = "insert into KHACHHANG (MaKhachHang, TenKhachHang, NgaySinh, GioiTinh, Email, SDT)"
-				+ "values ('" + cus.getId() + "', " + cus.getFullName() + "', " + cus.getDob()
-				+ "', " + cus.isMale() + "', " + cus.getEmail()
-				+ "', " + cus.getPhoneNumber() + "');";		
+	
+	SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+	String insertDob = df.format(cus.getDob());
+	System.out.println("In database: " + insertDob);
+		String queryStr = "insert into KHACHHANG (MaKhachHang, TenKhachHang, NgaySinh, GioiTinh, Email, SDT) "
+				+ "values ('" + cus.getId() + "', '" + cus.getFullName() 
+				+ "', #" + insertDob + "#, "
+				 + cus.isMale() + ", '" + cus.getEmail()
+				+ "', '" + cus.getPhoneNumber() + "');";		
 		try {
 			update(queryStr);
 		}
@@ -29,11 +35,11 @@ public boolean addCustomer(Customer cus) {
 		return true;
 	}
 
-public boolean deleteCustomer(int cusId) {
+public boolean deleteCustomer(String cusId) {
 	String queryStr = "delete from KHACHHANG where MaKhachHang = '" + cusId + "';";
-	
 	try {
 		update(queryStr);
+		System.out.println("deleted " + cusId);
 		return true;
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -42,13 +48,17 @@ public boolean deleteCustomer(int cusId) {
 }
 
 	public boolean updateCustomer(Customer cus) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+		String newDob = df.format(cus.getDob());
+		
 		String queryStr = "update KHACHHANG set "
-				+ "TenKhachHang = '" + cus.getFullName() + ", NgaySinh = '#" + cus.getDob().toString() + "'# "
-				+ ", GioiTinh = '" + cus.isMale() + "', Email = '" + cus.getEmail()
+				+ "TenKhachHang = '" + cus.getFullName() + "', NgaySinh = #" + newDob + "#, "
+				+ "GioiTinh = '" + cus.isMale() + "', Email = '" + cus.getEmail()
 				+ "', SDT = '" + cus.getPhoneNumber()
 				+ "' where MaKhachHang = '" + cus.getId() + "';";
 		try {
 			update(queryStr);
+			System.err.println("Updated " + cus.getId());
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -103,6 +113,29 @@ public boolean deleteCustomer(int cusId) {
 		}		
 		return customers;
 		
+	}
+
+	public ArrayList<Customer> searchBy(String type, String searchContent) {
+		String queryStr = "select * from KHACHHANG where " + type + "= '"  + searchContent + "';";
+		ArrayList<Customer> customers = new ArrayList<Customer>();
+		try {
+			ResultSet rs = execute(queryStr);
+			while (rs.next()) {
+				String id = rs.getString("MaKhachHang");
+				String fullName = rs.getString("TenKhachHang");				
+				Date dob = rs.getDate("NgaySinh");
+				boolean isMale = rs.getBoolean("GioiTinh");
+				String email = rs.getString("Email");
+				String phoneNumber = rs.getString("SDT");
+				Customer cus = new Customer(id, fullName, dob, isMale, email, phoneNumber);
+				customers.add(cus);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return customers;
 	}
 
 }

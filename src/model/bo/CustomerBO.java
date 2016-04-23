@@ -17,6 +17,26 @@ public class CustomerBO {
 		return customerDAO.getCustomersList();
 	}
 	
+	public ArrayList<Customer> searchBy(String type, String searchContent) {
+		return customerDAO.searchBy(type, searchContent);
+	}
+	
+	public ArrayList<Customer> searchByName(String searchContent) {
+		return customerDAO.searchBy("TenKhachHang", searchContent);
+	}
+	
+	public ArrayList<Customer> searchByEmail(String searchContent) {
+		return customerDAO.searchBy("Email", searchContent);
+	}
+	
+	public ArrayList<Customer> searchById(String searchContent) {
+		return customerDAO.searchBy("MaKhachHang", searchContent);
+	}
+	
+	public ArrayList<Customer> searchByPhoneNumber(String searchContent) {
+		return customerDAO.searchBy("SDT", searchContent);
+	}
+	
 	public boolean addCustomer(Customer cus) {
 		if (customerDAO.addCustomer(cus)) {
 			return true;
@@ -32,7 +52,7 @@ public class CustomerBO {
 		return customerDAO.getCustomer(cusId);
 	}
 	
-	public boolean deleteCustomer(int cusId) {
+	public boolean deleteCustomer(String cusId) {
 		return customerDAO.deleteCustomer(cusId);
 	}
 }

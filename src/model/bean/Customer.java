@@ -1,6 +1,6 @@
 package model.bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Customer {
 	private String id;

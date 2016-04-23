@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="model.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -17,32 +19,32 @@ boolean isStaff = ("nv".equalsIgnoreCase(currentUser.getPrivilege())) ? true : f
 
 <div class="row">
 			<div class="col-sm-2">
-				<a href="them_khach_hang.html">
+				<a href="customermanager?action=redir_add_customer" target="_main">
 					<button type="button" class="btn btn-success" name="themNhanVien">Thêm khách hàng</button>
 				</a>
 			</div>
-	
-			<div class="col-sm-2" style="text-align: right">
-				<p style="margin-top: 6px">Tìm kiếm theo</p>
-			</div>
-			<div class="col-sm-3">
-				<select name="timKiemTheoSelect" id="inputTimKiemTheoSelect"
-					class="form-control" required="required">
-					<option value="">Mã khách hàng</option>
-					<option value="">Họ tên</option>
-					<option value="">Số điện thoại</option>
-					<option value="">Email</option>
-				</select>
-			</div>
-	
-			<div class="col-sm-3" style="align-content: right;">
-				<span style="align-content:  center"><input type="search" name="searchContent" id="inputSearchContent" class="form-control"> </span>
-			</div>
-			<div class="col-sm-2">
-				<button type="submit" class="btn btn-success">Tìm</button>
-			</div>
+	<form method="POST" name="searchForm" action="customermanager?action=search">
+		<div class="col-sm-2" style="text-align: right">
+			<p style="margin-top: 6px">Tìm kiếm theo</p>
+		</div>
+		<div class="col-sm-3">
+			<select name="searchBy" id="inputSearchBy"
+				class="form-control" required="required">
+				<option value="customerId" selected>Mã khách hàng</option>
+				<option value="fullName">Họ tên</option>
+				<option value="phoneNumber">Số điện thoại</option>
+				<option value="email">Email</option>
+			</select>
 		</div>
 
+		<div class="col-sm-3" style="align-content: right;">
+			<span style="align-content:  center"><input type="search" name="searchContent" id="inputSearchContent" class="form-control"> </span>
+		</div>
+		<div class="col-sm-2">
+			<button type="submit" class="btn btn-success">Tìm</button>
+		</div>
+	</div>
+</form>
 <div class="table-responsive" style="margin-top: 20px">
 <table style="width: 100%" class="table table-bordered table-hover table-striped">
 	<tr color="green">
@@ -64,16 +66,16 @@ boolean isStaff = ("nv".equalsIgnoreCase(currentUser.getPrivilege())) ? true : f
 			for (Customer c : customers) { 
 	%>	
 	<tr>
-		<form method="POST" action="">
+		<form method="POST" action="customermanager?action=updateOrDelete">
 			<td><%= i %></td>
 			<td>
-				<%= c.getId() %>
+				<input type="hidden" name="customerId" value="<%= c.getId() %>"> <%= c.getId() %>
 			</td>
 			<td>
 				<input type="text" name="fullname" id="inputFullname" class="form-control" value="<%= c.getFullName() %>" required="required">
 			</td>
 			<td>
-				<input type="date" name="dob" id="inputDob" class="form-control" value="<%=c.getDob().toLocalDate() %>" required="required">
+				<input type="date" name="dob" id="inputDob" class="form-control" value="<%= c.getDob()%>" required="required">
 			</td>
 			<td>
 				<select name="gender" id="inputGender" class="form-control" required="required" select>
@@ -82,16 +84,16 @@ boolean isStaff = ("nv".equalsIgnoreCase(currentUser.getPrivilege())) ? true : f
 				</select>
 			</td>
 			<td>
-				<input type="email" name="" id="input" class="form-control" value="<%= c.getEmail() %>" required="required">
+				<input type="email" name="email" id="input" class="form-control" value="<%= c.getEmail() %>" required="required">
 			</td>
 			<td>	
-				<input type="text" name="phoneNumber" id="inputPhoneNumber" class="form-control" value="<%= c.getPhoneNumber() %>" required="required" pattern="" title="">
+				<input type="text" name="phoneNumber" id="inputPhoneNumber" class="form-control" value="<%= c.getPhoneNumber() %>">
 			</td>
 			<td>
-				<button type="submit" class="btn btn-primary" name="editUserSubmit">Sửa</button>
+				<button type="submit" class="btn btn-primary" name="actionDetail" value="update">Sửa</button>
 			</td>
 			<td>
-				<button type="submit" class="btn btn-danger" name="deleteUserSubmit">Xóa</button>
+				<button type="submit" class="btn btn-danger" name="actionDetail" value="delete">Xóa</button>
 			</td>
 		</form>
 	</tr>
@@ -116,9 +118,7 @@ boolean isStaff = ("nv".equalsIgnoreCase(currentUser.getPrivilege())) ? true : f
 				} 
 			}
 			%>
-
 </table>
-</div>
 </div>
 </body>
 </html>
