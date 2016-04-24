@@ -1,15 +1,16 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.bean.User;
 import model.bean.User;
 import model.bo.UserBO;
 
@@ -38,7 +39,7 @@ public class UserManager extends HttpServlet {
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-
+		userBO = new UserBO();
 		String action = request.getParameter("action");
 		if (action == null) {
 			action = "";
@@ -46,27 +47,28 @@ public class UserManager extends HttpServlet {
 
 		switch (action) {
 
-		case "redir_add_User":
+		case "redirAddUsers":
 			request.getRequestDispatcher("/WEB-INF/them_nhan_vien.jsp").include(request, response);
 			break;
 
-		case "add_User":
+		case "addUser":
 			User cus = getRequestUser(request);
 			userBO.addUser(cus);
 
-			response.sendRedirect("Usermanager");
+			response.sendRedirect("usermanager");
 			break;
 
 		case "updateOrDelete":
+			
 			String actionDetail = request.getParameter("actionDetail");
 			if ("update".equals(actionDetail)) {
 				User upUser = getRequestUser(request);
 				userBO.updateUser(upUser);
 			} else {
 				// delete
-				userBO.deleteUser(request.getParameter("UserId"));
+				userBO.deleteUser(request.getParameter("userId"));
 			}
-			response.sendRedirect("Usermanager");
+			response.sendRedirect("usermanager");
 			break;
 
 		case "search":
@@ -93,7 +95,6 @@ public class UserManager extends HttpServlet {
 			break;
 
 		case "":
-			userBO = new UserBO();
 			users = userBO.getUsers();
 
 			request.setAttribute("userList", users);
@@ -108,8 +109,22 @@ public class UserManager extends HttpServlet {
 	}
 
 	private User getRequestUser(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return null;
+		String id = request.getParameter("userId");
+		String fullName = request.getParameter("fullname");
+		Date dob = new Date(2016, 23, 4);
+		try {
+			dob = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("dob"));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		boolean isMale = ("F".equals(request.getParameter("gender"))) ? false : true;
+		String email = request.getParameter("email");
+		String phoneNumber = request.getParameter("phoneNumber");
+		String privilege = request.getParameter("privilege");
+		System.out.println(id + " " + fullName + " " + dob.toGMTString() + " " + isMale + " " + 
+		email + " " + phoneNumber + " "  + privilege);
+		
+		return new User(id, fullName, dob, isMale, email, "", phoneNumber, privilege);
 	}
 
 	/**

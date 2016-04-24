@@ -24,7 +24,7 @@ public class UserBO {
 		return userDAO.updateUser(user);
 	}
 
-	public User getUser(int userId) {
+	public User getUser(String userId) {
 		return userDAO.getUser(userId);
 	}
 	
@@ -32,7 +32,7 @@ public class UserBO {
 		return userDAO.getUsers();
 	}
 	
-	public boolean deleteUser(int userId) {
+	public boolean deleteUser(String userId) {
 		return userDAO.deleteUser(userId);
 	}
 
@@ -48,11 +48,6 @@ public class UserBO {
 	}
 	public ArrayList<User> searchByEmail(String searchContent) {
 		return userDAO.searchBy("Email", searchContent);
-	}
-
-	public void deleteUser(String parameter) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	

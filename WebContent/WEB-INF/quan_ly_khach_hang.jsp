@@ -22,7 +22,7 @@
 <div class="row">
 			<div class="col-sm-2">
 				<% if (isStaff) {%>
-				<a href="customermanager?action=redir_add_customer" target="_main">
+				<a href="customermanager?action=redirAddUser" target="_main">
 					<button type="button" class="btn btn-success" name="themNhanVien">Thêm khách hàng</button>
 				</a>
 				<% } %>

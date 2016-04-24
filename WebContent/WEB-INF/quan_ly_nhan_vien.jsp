@@ -14,7 +14,7 @@
 
 	<div class="row">
 		<div class="col-sm-2">
-			<a href="usermanager?action=add_user">
+			<a href="usermanager?action=redirAddUsers" target="_main">
 				<button type="button" class="btn btn-success" name="themNhanVien">Thêm nhân viên</button>
 			</a>
 		</div>
@@ -23,7 +23,7 @@
 			<p style="margin-top: 6px">Tìm kiếm theo</p>
 		</div>
 		<div class="col-sm-3">
-			<select name="timKiemTheoSelect" id="inputTimKiemTheoSelect"
+			<select name="searchBy" id="inputSearchBy"
 				class="form-control" required="required">
 				<option value="userId">Mã nhân viên</option>
 				<option value="fullName">Họ tên</option>
@@ -75,23 +75,23 @@
 							</select>
 						</td>
 						<td>
-							<input type="email" name="" id="input" class="form-control" value="<%= u.getEmail() %>" required="required">
+							<input type="email" name="email" id="input" class="form-control" value="<%= u.getEmail() %>" required="required">
 						</td>
 						<td>	
-							<input type="text" name="phoneNumber" id="inputPhoneNumber" class="form-control" value="<%= u.getPhoneNumber() %>" required="required">
+							<input type="phoneNumber" name="phoneNumber" id="inputPhoneNumber" class="form-control" value="<%= u.getPhoneNumber() %>" required="required">
 						</td>
 						<td>			
 						<% boolean isAdmin = ("admin".equals(u.getPrivilege())) ? true : false; %>
-							<select name="privilegeSelect" id="inputPrivilegeSelect" class="form-control" required="required">
+							<select name="privilege" id="inputPrivilegeSelect" class="form-control" required="required">
 								<option value="admin" <% if(isAdmin) %> selected>Admin</option>
 								<option value="staff" <% if(!isAdmin) %> selected>Nhân viên</option>
 							</select>
 						</td>
 						<td>
-							<button type="submit" class="btn btn-primary" name="actionDetail">Sửa</button>
+							<button type="submit" class="btn btn-primary" name="actionDetail" value="update">Sửa</button>
 						</td>
 						<td>
-							<button type="submit" class="btn btn-danger" name="actionDetail">Xóa</button>
+							<button type="submit" class="btn btn-danger" name="actionDetail" value="delete">Xóa</button>
 						</td>
 					</form>
 				</tr>

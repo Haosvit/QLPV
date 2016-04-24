@@ -3,6 +3,7 @@ package model.dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import model.bean.Customer;
@@ -11,7 +12,23 @@ import model.bean.User;
 public class UserDAO extends Database {
 
 	public boolean addUser(User user) {
-		
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+		String insertDob = df.format(user.getDob());
+		System.out.println("In database: " + insertDob);
+			String queryStr = "insert into NHANVIEN (MaNhanVien, TenNhanVien, NgaySinh, GioiTinh, TaiKhoan, MatKhau, SDT, Quyen) "
+					+ "values ('" + user.getId() + "', '" + user.getFullName() 
+					+ "', #" + insertDob + "#, "
+					 + user.isMale() + ", '" + user.getEmail()
+					+ "', '" + user.getPwd() + "', '" + user.getPhoneNumber() + "', '" + user.getPrivilege() + "');";		
+			try {
+				update(queryStr);
+			}
+			catch (SQLException e) {
+				e.printStackTrace();
+				return false;
+			}
+			return true;
+		/*
 		String queryStr = "insert into NHANVIEN (MaNhanVien, TenNhanVien, NgaySinh, GioiTinh, TaiKhoan, MatKhau, SDT, Quyen)"
 				+ "values ('" + user.getId() + "', " + user.getFullName() + "', " + user.getDob()
 				+ "', " + user.isMale() + "', " + user.getEmail() + "', " + user.getPwd()
@@ -23,10 +40,10 @@ public class UserDAO extends Database {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
+		return true;*/
 	}
 
-	public boolean deleteUser(int userId) {
+	public boolean deleteUser(String userId) {
 		String queryStr = "delete from NHANVIEN where MaNhanVien = '" + userId + "';";
 		
 		try {
@@ -39,13 +56,17 @@ public class UserDAO extends Database {
 	}
 	
 	public boolean updateUser(User user) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+		String newDob = df.format(user.getDob());
+		
 		String queryStr = "update NHANVIEN set "
-				+ "TenNhanVien = '" + user.getFullName() + ", NgaySinh = '#" + user.getDob().toString() + "'# "
-				+ ", GioiTinh = '" + user.isMale() + "', TaiKhoan = '" + user.getEmail() + "', MatKhau = '" + user.getPwd()
-				+ "', SDT = '" + user.getPhoneNumber() + "', Quyen = '" + user.getPrivilege()
-				+ "' where MaNhanVien = '" + user.getId() + "';";
+				+ "TenNhanVien = '" + user.getFullName() + "', NgaySinh = #" + newDob + "#, "
+				+ "GioiTinh = " + user.isMale() + ", TaiKhoan = '" + user.getEmail()
+				+ "', SDT = '" + user.getPhoneNumber()+ "', Quyen = '" + user.getPrivilege() +"'"
+				+ " where MaNhanVien = '" + user.getId() + "';";
 		try {
 			update(queryStr);
+			System.err.println("Updated " + user.getId());
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -54,7 +75,7 @@ public class UserDAO extends Database {
 		return true;
 	}
 
-	public User getUser(int userId) {
+	public User getUser(String userId) {
 		String queryStr = "select * from NHANVIEN where MaNhanVien='" + userId + "'";
 		User user = null;
 		try {
