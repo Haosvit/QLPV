@@ -121,8 +121,6 @@ public class UserManager extends HttpServlet {
 		String email = request.getParameter("email");
 		String phoneNumber = request.getParameter("phoneNumber");
 		String privilege = request.getParameter("privilege");
-		System.out.println(id + " " + fullName + " " + dob.toGMTString() + " " + isMale + " " + 
-		email + " " + phoneNumber + " "  + privilege);
 		
 		return new User(id, fullName, dob, isMale, email, "", phoneNumber, privilege);
 	}

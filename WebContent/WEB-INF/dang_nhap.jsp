@@ -8,23 +8,39 @@
 			<label style="font-size: 30px; padding: 30px;">HỆ THỐNG QUẢN
 				LÝ PHÒNG BÁN VÉ MÁY BAY</label>
 		</div>
+<script type="text/javascript">
 
+function validateForm() {
+	var x = document.forms["myForm"]["email"].value;
+	var y = document.forms["myForm"]["password"].value;
+	var reg_mail = /^[A-Za-z0-9]+([_\.\-]?[A-Za-z0-9])*@[A-Za-z0-9]+([\.\-]?[A-Za-z0-9]+)*(\.[A-Za-z]+)+$/;
+	
+	if (reg_mail.test(x) == false) {
+		{
+			document.getElementById("message").style.color = "red";
+			document.getElementById("message").innerHTML ='Email nhập chưa đúng định dạng';}		
+	    return false; 	
+}
+}
+
+</script>
 <div class="container" style="width: 40%; padding-top: 50px">
-	<form action="login" method="POST" role="form">
+	<form action="login" name="myForm" method="POST" role="form" onsubmit="return validateForm()">
+		<h5 id="message"></h5><br><br>
 		<legend>Đăng nhập</legend>
 
 		<div class="form-group">
 			<label for="email">Email</label>
-			 <input type="text"
+			 <input type="text" required="true"
 				class="form-control" id="email" placeholder="User ID" name="email" maxlength="40">
 		</div>
 		<div class="form-group">
-			<label for="password">Mật khẩu</label> <input type="password"
-				class="form-control" id="password" placeholder="" name="password" maxlength="20">
-		</div>
+			<label for="password">Mật khẩu</label> <input type="password" required="true"
+				class="form-control" id="password" placeholder="" name="password" maxlength="20"><br>
+		</div>		
 		<div align="right">
 			<button type="submit" class="btn btn-success">Đăng nhập</button>
-			<input type="hidden" name="loginPressed" value="yes">
+			<input type="hidden" name="loginPressed" value="yes">			
 		</div>
 	</form>
 
