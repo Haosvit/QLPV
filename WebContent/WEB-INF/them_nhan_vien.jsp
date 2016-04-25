@@ -68,7 +68,9 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-2 col-sm-offset-2">
-				<button type="button" class=btn btn-default>Quay lại</button>
+				<a href="usermanager" target="_main">			
+					<button type="button" class=btn btn-default>Quay lại</button>
+				</a>
 			</div>
 			<div class="col-sm-2 col-sm-offset-1">
 				<button type="reset" class="btn btn-danger">Xóa ô đã nhập</button>
