@@ -3,7 +3,7 @@
 <%@ page import="model.bean.User" %>
 <%
 	User user = (User) request.getAttribute("currentUser");
-	boolean isStaff = ("nv".equalsIgnoreCase(user.getPrivilege())) ? true : false;
+	boolean isStaff = ("staff".equalsIgnoreCase(user.getPrivilege())) ? true : false;
 %>
 
 <!DOCTYPE html>

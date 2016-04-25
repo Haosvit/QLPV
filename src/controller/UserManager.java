@@ -90,7 +90,7 @@ public class UserManager extends HttpServlet {
 				break;
 			}
 
-			request.setAttribute("UserList", users);
+			request.setAttribute("userList", users);
 			request.getRequestDispatcher("/WEB-INF/quan_ly_nhan_vien.jsp").include(request, response);
 			break;
 

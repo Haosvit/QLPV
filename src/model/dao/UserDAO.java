@@ -14,7 +14,6 @@ public class UserDAO extends Database {
 	public boolean addUser(User user) {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
 		String insertDob = df.format(user.getDob());
-		System.out.println("In database: " + insertDob);
 			String queryStr = "insert into NHANVIEN (MaNhanVien, TenNhanVien, NgaySinh, GioiTinh, TaiKhoan, MatKhau, SDT, Quyen) "
 					+ "values ('" + user.getId() + "', '" + user.getFullName() 
 					+ "', #" + insertDob + "#, "

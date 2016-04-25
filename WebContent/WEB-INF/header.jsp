@@ -12,6 +12,13 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<script src="js/jquery-1.12.3.js"></script>
   		<script src="js/bootstrap.min.js"></script>
+  		
+		<style type="text/css">
+			p.err {
+			color : red;
+			text-align: center;
+			}
+		</style>
 	</head>
 	<body>
 <div class="container-fluid">

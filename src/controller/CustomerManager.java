@@ -49,7 +49,7 @@ public class CustomerManager extends HttpServlet {
 		}
 
 		switch (requestParam) {
-		case "redir_add_customer":
+		case "redirAddCustomer":
 			request.getRequestDispatcher("/WEB-INF/them_khach_hang.jsp").include(request, response);
 			break;
 			
@@ -101,8 +101,6 @@ public class CustomerManager extends HttpServlet {
 			
 			customers = customerBO.getCustomerList();
 			request.setAttribute("customerList", customers);
-			
-			//User currentUser = (User) session.getAttribute("currentUser");
 
 			request.getRequestDispatcher("/WEB-INF/quan_ly_khach_hang.jsp").include(request, response);
 			break;

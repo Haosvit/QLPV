@@ -3,6 +3,8 @@
 <%@ page import="java.util.Date" %>
 <%@ include file="/WEB-INF/header.jsp" %>
 
+
+
 <div class="container">
 
 <div style="text-align: center">
@@ -12,17 +14,18 @@
 	<label style="font-size: 15px;">THÊM NHÂN VIÊN</label>
 </div>
 <div class="container">
-	<form action="usermanager?action=addUser" method="POST" class="form-horizontal" role="form">
+	<form action="usermanager?action=addUser" method="POST" class="form-horizontal" role="form" onsubmit="return validateForm()">
 		<div class="row" style="margin-top: 20px;">
 			<div class="col-sm-6">
 				<div style="width: 80%;">
 					<div class="form-group">
 					 	 <label for="workerId">Mã nhân viên</label>
-					  	<input type="text" class="form-control" id="workerId" name="userId">
+					 	 <p class="err" id="errMsgWorkerId"></p>
+					  	<input type="text" class="form-control" id="workerId" name="userId" required="required">
 					</div>
 					<div class="form-group">
 					  	<label for="fullname">Họ tên</label>
-					  	<input type="text" class="form-control" id="fullname" name="fullname">
+					  	<input type="text" class="form-control" id="fullname" name="fullname" required="required">
 					</div>
 					<div class="form-group">
 					 	 <label for="dob">Ngày sinh</label>
@@ -42,15 +45,16 @@
 				<div style="width: 80%">
 					<div class="form-group">
 					 	 <label for="email">Tài khoản</label>
-					  	<input type="email" class="form-control" id="email" name="email">
+					  	<input type="email" class="form-control" id="email" name="email" required="required">
 					</div>
 					<div class="form-group">
 					  	<label for="pwd">Mật khẩu</label>
-					  	<input type="text" class="form-control" id="pwd" name="pwd">
+					  	<input type="text" class="form-control" id="pwd" name="pwd" required="required">
 					</div>
 					<div class="form-group">
 					 	 <label for="phoneNumber">Số điện thoại</label>
-					  	<input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
+					 	 <p class="err" id="errMsgPhoneNumber"></p>
+					  	<input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required="required">
 					</div>
 					<div class="form-group">
 					  	<label for="privilege">Quyền</label>
@@ -75,5 +79,33 @@
 		</div>
 	</form>
 </div>
+
+<script type="text/javascript">
+
+function validateForm() {
+	var workerId = document.getElementById("workerId").value;
+	var phoneNumber = document.getElementById("phoneNumber").value;
+	var reg_id = /^NV[0-9]+$/;
+	var reg_phone = /^[0-9]+$/;
+	
+	if (reg_id.test(workerId) == false) {
+		document.getElementById("errMsgWorkerId").innerHTML = "Sai định dạng mã nhân viên!";
+	    return false; 	
+	}
+	else {
+		document.getElementById("errMsgWorkerId").innerHTML = "";
+	}
+	
+	if (reg_phone.test(phoneNumber) == false) {
+		document.getElementById("errMsgPhoneNumber").innerHTML = "Sai định dạng số điện thoại!";
+		return false;
+	}
+	else {
+		document.getElementById("errMsgPhoneNumber").innerHTML = "";
+	}
+}
+
+</script>
+	 
 </body>
 </html>
