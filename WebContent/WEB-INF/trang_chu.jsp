@@ -47,7 +47,7 @@
 										<%
 											if (isStaff) {
 										%>
-										<li><a href="#" target="_main">Quản lý bán vé</a></li>
+										<li><a href="ticketmanager?action=sale" target="_main">Quản lý bán vé</a></li>
 										<%
 											}
 										%>

@@ -39,6 +39,7 @@ function validateForm() {
 				class="form-control" id="password" placeholder="" name="password" maxlength="20"><br>
 		</div>		
 		<div align="right">
+			<button type="reset" class="btn btn-default" style="margin-right: 15px">Xóa</button>
 			<button type="submit" class="btn btn-success">Đăng nhập</button>
 			<input type="hidden" name="loginPressed" value="yes">			
 		</div>

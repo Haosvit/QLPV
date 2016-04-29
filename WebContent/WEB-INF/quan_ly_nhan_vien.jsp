@@ -93,7 +93,7 @@
 				</td>
 				<td>				
 					<button type="submit" class="btn btn-primary" name="actionDetail"
-						value="update">Sửa</button>
+						value="update">Lưu</button>
 				</td>
 				<td>
 					<button type="submit" class="btn btn-danger" name="actionDetail"

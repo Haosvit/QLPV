@@ -26,11 +26,9 @@
     <servlet-class>controller.UserManager</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>CustomerManager</servlet-name>
-  	<servlet-class>controller.CustomerManager</servlet-class>
+    <servlet-name>CustomerManager</servlet-name>
+    <servlet-class>controller.CustomerManager</servlet-class>
   </servlet>
-  
-  
   <servlet-mapping>
     <servlet-name>HomePage</servlet-name>
     <url-pattern>/home</url-pattern>

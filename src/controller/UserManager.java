@@ -81,6 +81,7 @@ public class UserManager extends HttpServlet {
 				break;
 			case "fullName":
 				users = userBO.searchByName(searchContent);
+				System.out.println(searchContent);
 				break;
 			case "phoneNumber":
 				users = userBO.searchByPhoneNumber(searchContent);
