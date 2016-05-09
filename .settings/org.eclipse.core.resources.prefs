@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/dang_nhap.jsp=UTF-8
 encoding//WebContent/WEB-INF/footer.jsp=UTF-8
 encoding//WebContent/WEB-INF/tao_bao_cao.jsp=UTF-8
+encoding//src/controller/Login.java=UTF-8
 encoding//src/model/dao/Database.java=UTF-8

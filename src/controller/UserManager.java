@@ -112,6 +112,7 @@ public class UserManager extends HttpServlet {
 	private User getRequestUser(HttpServletRequest request) {
 		String id = request.getParameter("userId");
 		String fullName = request.getParameter("fullname");
+		String password = request.getParameter("password");
 		Date dob = new Date(2016, 23, 4);
 		try {
 			dob = new SimpleDateFormat("yyyy-mm-dd").parse(request.getParameter("dob"));
@@ -123,7 +124,7 @@ public class UserManager extends HttpServlet {
 		String phoneNumber = request.getParameter("phoneNumber");
 		String privilege = request.getParameter("privilege");
 		
-		return new User(id, fullName, dob, isMale, email, "", phoneNumber, privilege);
+		return new User(id, fullName, dob, isMale, email, password, phoneNumber, privilege);
 	}
 
 	/**

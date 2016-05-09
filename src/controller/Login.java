@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
 				String pass = request.getParameter("password");
 				if (!loginBO.checkLogin(email, pass)) {
 					// login fail
-					out.println("Login fail! <br><a href=\"login\">Back</a>");
+					out.println("Tài khoản hoặc mật khẩu sai! <br><a href=\"login\">Quay lại</a>");
 				} else {
 					// login successful
 					user = loginBO.getCurrentUser();

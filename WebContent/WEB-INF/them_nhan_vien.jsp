@@ -49,7 +49,7 @@
 					</div>
 					<div class="form-group">
 					  	<label for="pwd">Mật khẩu</label>
-					  	<input type="text" class="form-control" id="pwd" name="pwd" required="required">
+					  	<input type="text" class="form-control" id="pwd" name="password" required="required">
 					</div>
 					<div class="form-group">
 					 	 <label for="phoneNumber">Số điện thoại</label>
