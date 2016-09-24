@@ -38,7 +38,7 @@ public class TicketManager extends HttpServlet {
 		}
 		
 		switch (actionRequest) {
-		case "findTicket":
+		case "findTicket": // "findAvailableTickets"
 			// tim ve trong
 			// chuyen toi man hinh tim ve trong
 			break;
