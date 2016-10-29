@@ -1,4 +1,4 @@
-package model.bean;
+package model.bean;// test Github
 
 import java.util.Date;
 
