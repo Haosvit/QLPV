@@ -27,18 +27,25 @@
 					 	 <label for="dob">Ngày sinh</label>
 					  	<input type="date" name="dob" id="inputDob" class="form-control" required="required">
 					</div>
-					
-				</div>
-			</div>
-			
-			<div class="col-sm-6">
-				<div style="width: 80%">
 					<div class="form-group">
 					  	<label for="gender">Giới tính</label>
 					  	<select name="gender" id="inputGender" class="form-control" required="required">
 							<option value="M" selected>Nam</option>
 							<option value="F">Nữ</option>	
 						</select>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-6">
+				<div style="width: 80%">
+					<div class="form-group">
+					 	 <label for="personId">CMND</label>
+					  	<input type="text" class="form-control" id="personId" name="personId">
+					</div>
+					<div class="form-group">
+					 	 <label for="passport">Hộ chiếu</label>
+					  	<input type="text" class="form-control" id="passport" name="passport">
 					</div>
 					<div class="form-group">
 					 	 <label for="email">Email</label>

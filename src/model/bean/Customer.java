@@ -9,6 +9,8 @@ public class Customer {
 	private boolean isMale;
 	private String email;
 	private String phoneNumber;
+	private String personId;
+	private String passport;
 	
 	public Customer(String id, String fullName, Date dob, boolean isMale, String email, String phoneNumber) {
 		super();
@@ -55,6 +57,16 @@ public class Customer {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	
+	public String getPersonId() {
+		return personId;
+	}
+	public void setPersonId(String personId) {
+		this.personId = personId;
+	}
+	public String getPassport() {
+		return passport;
+	}
+	public void setPassport(String passport) {
+		this.passport = passport;
+	}
 }

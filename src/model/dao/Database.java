@@ -14,23 +14,33 @@ import net.ucanaccess.jdbc.UcanaccessDriver;
 public class Database {
 	Connection connection = null;
 	Statement statement = null;
-
+	private String dbName = "qlpvdb";
 	/**
 	 * Khi tạo mới đối tượng Database sẽ tự động tìm và nạp driver cũng như CSDL
 	 */
 	public Database() {
-
+		String connectionURL = "jdbc:mysql://localhost:3306/" + dbName + "?useUnicode=true&characterEncoding=UTF-8";
 		try {
-			Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			// Đường dẫn ở thư mục mã nguồn, để test CSDL
-			String address = UcanaccessDriver.URL_PREFIX
-					+ "D:/Projects/Java/Eclipse workspaces/DynamicWeb/QLPV/WebContent/WEB-INF/QLPV.accdb";
-			
-			connection = DriverManager.getConnection(address);
+			// register drive sql jdbc
+			Class.forName("com.mysql.jdbc.Driver");
+			// create connection;
+			connection = (Connection) DriverManager.getConnection(connectionURL, "root", "");
 			statement = connection.createStatement();
-		} catch (Exception e) {
+			// System.out.println("Connection is OK");
+		} catch (SQLException | ClassNotFoundException e) {
 			System.err.println("[Database constructor] Lỗi: " + e);
 		}
+		// try {
+		// Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		// // Đường dẫn ở thư mục mã nguồn, để test CSDL
+		// String address = UcanaccessDriver.URL_PREFIX
+		// + "E:/Projects/Java Dynamic Web/QLPV/WebContent/WEB-INF/QLPV.accdb";
+		//
+		// connection = DriverManager.getConnection(address);
+		// statement = connection.createStatement();
+		// } catch (Exception e) {
+		// System.err.println("[Database constructor] Lỗi: " + e);
+		// }
 	}
 
 	public int update(String query) throws SQLException {

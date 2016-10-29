@@ -122,11 +122,15 @@ public class CustomerManager extends HttpServlet {
 			e.printStackTrace();
 		}
 		String gender = request.getParameter("gender");
+		String personId = request.getParameter("personId");
+		String passport = request.getParameter("passport");
 		String email = request.getParameter("email");
 		String phoneNumber = request.getParameter("phoneNumber");
 		
 		boolean isMale = ("F".equals(gender)) ? false : true;
 		Customer cus = new Customer(id, fullname, dob, isMale, email, phoneNumber);
+		cus.setPersonId(personId);
+		cus.setPassport(passport);
 		return cus;
 	}
 

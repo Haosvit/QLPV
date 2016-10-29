@@ -16,8 +16,8 @@ public class UserDAO extends Database {
 		String insertDob = df.format(user.getDob());
 			String queryStr = "insert into NHANVIEN (MaNhanVien, TenNhanVien, NgaySinh, GioiTinh, TaiKhoan, MatKhau, SDT, Quyen) "
 					+ "values ('" + user.getId() + "', '" + user.getFullName() 
-					+ "', #" + insertDob + "#, "
-					 + user.isMale() + ", '" + user.getEmail()
+					+ "', '" + insertDob + "', "
+					 + (user.isMale() ? "b'1'" : "b'0'") + ", '" + user.getEmail()
 					+ "', '" + user.getPwd() + "', '" + user.getPhoneNumber() + "', '" + user.getPrivilege() + "');";		
 			try {
 				update(queryStr);
@@ -59,8 +59,8 @@ public class UserDAO extends Database {
 		String newDob = df.format(user.getDob());
 		
 		String queryStr = "update NHANVIEN set "
-				+ "TenNhanVien = '" + user.getFullName() + "', NgaySinh = #" + newDob + "#, "
-				+ "GioiTinh = " + user.isMale() + ", TaiKhoan = '" + user.getEmail()
+				+ "TenNhanVien = '" + user.getFullName() + "', NgaySinh = '" + newDob + "', "
+				+ "GioiTinh = " + (user.isMale() ? "b'1'" : "b'0'") + ", TaiKhoan = '" + user.getEmail()
 				+ "', SDT = '" + user.getPhoneNumber()+ "', Quyen = '" + user.getPrivilege() +"'"
 				+ " where MaNhanVien = '" + user.getId() + "';";
 		try {

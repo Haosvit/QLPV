@@ -69,6 +69,8 @@
 			<td>Họ tên</td>
 			<td>Ngày sinh</td>
 			<td>Giới tính</td>
+			<td>CMND</td>
+			<td>Hộ chiếu</td>
 			<td>Email</td>
 			<td>Số điện thoại</td>
 
@@ -87,7 +89,7 @@
 				for (Customer c : customers) {
 		%>
 		<tr>
-			<form method="POST" action="customermanager?action=updateOrDelete" onsubmit="return checkUpdate()">
+			<form method="POST" action="customermanager?action=updateOrDelete">
 				<td><%=i%></td>
 				<td><input type="hidden" name="customerId" id="inputCustomerId"
 					value="<%=c.getId()%>"> <%=c.getId()%></td>
@@ -97,11 +99,17 @@
 				<td><input type="date" name="dob" id="inputDob"
 					class="form-control" value="<%=c.getDob()%>" required="required">
 				</td>
-				<td><select name="gender" id="inputGender" class="form-control"
+				<td style="width: 90px;"><select name="gender" id="inputGender" class="form-control"
 					required="required" select>
 						<option value="M" <%if (c.isMale()) {%> selected <%}%>>Nam</option>
 						<option value="F" <%if (!c.isMale()) {%> selected <%}%>>Nữ</option>
 				</select></td>
+				<td><input type="text" name="personId"
+					class="form-control" value="<%=c.getPersonId()%>"
+					required="required"></td>
+				<td><input type="text" name="passport"
+				class="form-control" value="<%=c.getPassport()%>"
+				required="required"></td>
 				<td><input type="email" name="email" id="inputEmail"
 					class="form-control" value="<%=c.getEmail()%>"
 					required="required"></td>
